@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Flower High School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --royal-blue: #0A2463; /* Deep blue for primary elements */
+            --majestic-gold: #D4AF37; /* Gold for accents and highlights */
+            --regal-purple: #4A0D67; /* Purple for secondary accents */
+            --cream-ivory: #FFF8DC; /* Cream for backgrounds */
+            --dark-text: #333333; /* For body text */
+            --light-text: #F0F0F0; /* For text on dark backgrounds */
+            --border-gold: rgba(212, 175, 55, 0.5); /* Subtle gold for borders */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--cream-ivory);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            color: var(--royal-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.8rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--majestic-gold);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--regal-purple);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header and Navigation */
+        .site-header {
+            background-color: var(--royal-blue);
+            color: var(--light-text);
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            height: var(--header-height);
+        }
+
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0; /* Override container padding for header */
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--majestic-gold);
+        }
+        .logo i { /* Simple crown icon placeholder */
+            margin-right: 8px;
+        }
+
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin-left: 25px;
+        }
+
+        .main-nav ul li a {
+            color: var(--light-text);
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--majestic-gold);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--majestic-gold);
+        }
+        .main-nav ul li a:hover::after,
+        .main-nav ul li a.active::after {
+            width: 70%;
+        }
+
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        main {
+            padding-top: var(--header-height); /* Offset for fixed header */
+            min-height: calc(100vh - var(--header-height) - 60px); /* 60px for footer */
+        }
+
+        .page-section {
+            display: none; /* Hidden by default, JS will show active page */
+            padding: 40px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--majestic-gold);
+            border-radius: 2px;
+        }
+
+
+        /* Home Page Specific Styles */
+        #home .hero {
+            background: linear-gradient(rgba(10, 36, 99, 0.7), rgba(10, 36, 99, 0.7)), 
+                        url('https://placehold.co/1200x600/0A2463/FFF8DC?text=LFS+Academy+Campus') center/cover no-repeat;
+            color: var(--light-text);
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            margin-bottom: 40px;
+        }
+        #home .hero h1 {
+            color: var(--majestic-gold);
+            font-size: 3.5rem;
+        }
+        #home .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            background-color: var(--majestic-gold);
+            color: var(--royal-blue);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .cta-button:hover {
+            background-color: #c89f2b; /* Darker gold */
+            color: var(--royal-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Slider */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            border: 3px solid var(--border-gold);
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            display: block;
+            height: 500px; /* Fixed height for slides */
+            object-fit: cover;
+        }
+        .slide-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(10, 36, 99, 0.8);
+            color: var(--light-text);
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        .slider-nav button {
+            background-color: rgba(212, 175, 55, 0.8);
+            color: var(--royal-blue);
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+        .slider-nav button:hover {
+            background-color: var(--majestic-gold);
+        }
+        .slider-dots {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: var(--border-gold);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: var(--majestic-gold);
+        }
+
+        /* About Us Page */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+        .about-grid img {
+            border: 5px solid var(--border-gold);
+        }
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--royal-blue);
+            color: var(--light-text);
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .counter-item {
+            flex-basis: 30%;
+        }
+        .counter-item h3 {
+            font-size: 2.5rem;
+            color: var(--majestic-gold);
+            margin-bottom: 5px;
+        }
+        .counter-item p {
+            font-size: 1.1rem;
+            color: var(--cream-ivory);
+        }
+
+        /* Academics Page */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .program-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-left: 5px solid var(--majestic-gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .program-card h3 {
+            color: var(--regal-purple);
+        }
+
+        /* Admissions Page */
+        .admissions-info {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 15px;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .faq-item h4 {
+            cursor: pointer;
+            color: var(--royal-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item h4::after {
+            content: '+'; /* Collapsed state */
+            font-size: 1.5rem;
+            color: var(--majestic-gold);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open h4::after {
+            content: '−'; /* Expanded state */
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding-left: 10px;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px; /* Adjust as needed */
+            padding-top: 10px;
+        }
+
+
+        /* Faculty Page */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .faculty-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-top: 5px solid var(--majestic-gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .faculty-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--royal-blue);
+        }
+        .faculty-card h4 {
+            color: var(--royal-blue);
+        }
+        .faculty-card p.designation {
+            color: var(--regal-purple);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Page */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--border-gold);
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        /* Contact Page */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .contact-form form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--royal-blue);
+        }
+        .contact-form form input,
+        .contact-form form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-gold);
+            border-radius: 5px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+        }
+        .contact-form form input:focus,
+        .contact-form form textarea:focus {
+            outline: none;
+            border-color: var(--majestic-gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .contact-info i { /* Placeholder for icons */
+            color: var(--majestic-gold);
+            margin-right: 10px;
+            width: 20px; /* Ensure alignment */
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            color: #777;
+            border: 1px solid var(--border-gold);
+        }
+
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--royal-blue);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px; /* Ensure space above footer */
+        }
+        .site-footer p {
+            margin: 0;
+        }
+        .site-footer a {
+            color: var(--majestic-gold);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeInModal 0.3s ease-out;
+        }
+        .modal-content {
+            background-color: var(--cream-ivory);
+            margin: 10% auto;
+            padding: 30px;
+            border: 5px solid var(--majestic-gold);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            animation: slideInModal 0.4s ease-out;
+        }
+        .close-button {
+            color: var(--royal-blue);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--regal-purple);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal h2 {
+            margin-top: 0;
+            color: var(--regal-purple);
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInModal {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .map-placeholder {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 1.5rem; }
+            .main-nav {
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--royal-blue);
+                flex-direction: column;
+                align-items: center;
+                display: none; /* Initially hidden */
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .main-nav.active {
+                display: flex;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            .main-nav ul li {
+                margin: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+            .main-nav ul li a {
+                display: block;
+                padding: 15px;
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            #home .hero h1 { font-size: 2.5rem; }
+            #home .hero p { font-size: 1.1rem; }
+            .cta-button { padding: 12px 25px; font-size: 1rem; }
+
+            .slider-container { margin: 20px auto; }
+            .slide img { height: 300px; }
+            .slide-caption { font-size: 0.9rem; padding: 10px; }
+            .slider-nav button { padding: 8px 12px; font-size: 1.2rem; }
+
+            .counters { flex-direction: column; gap: 20px; }
+            .counter-item h3 { font-size: 2rem; }
+
+            .about-grid, .programs-grid, .faculty-grid, .gallery-grid {
+                grid-template-columns: 1fr; /* Stack on smaller screens */
+            }
+             .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root { --header-height: 60px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .container { width: 95%; }
+            #home .hero { padding: 60px 0; }
+            .slide img { height: 250px; }
+        }
+
+        /* Accessibility */
+        .sr-only { /* Screen reader only */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        *:focus {
+            outline: 3px solid var(--majestic-gold);
+            outline-offset: 2px;
+        }
+        .modal:focus, .site-header:focus, .site-footer:focus { /* Elements that shouldn't have default focus outline if they are containers */
+            outline: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header" role="banner">
+        <div class="container">
+            <a href="#home" class="logo nav-link"><i class="fas fa-crown"></i> LFS</a>
+            <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNav">
+                &#9776; </button>
+            <nav class="main-nav" id="mainNav" role="navigation">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#academics" class="nav-link">Academics</a></li>
+                    <li><a href="#admissions" class="nav-link">Admissions</a></li>
+                    <li><a href="#faculty" class="nav-link">Faculty</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="page2.html"  >life at LFS</a></li>
+                     <li><a href="page.html"  >LFS</a></li>
+
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main">
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <div class="container">
+                    <h1>Little Flower High School</h1>
+                    <p>Nurturing Leaders, Honoring Tradition, Inspiring Excellence.</p>
+                    <a href="#about" class="cta-button nav-link">Discover Our Legacy</a>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="section-title">Campus Highlights</h2>
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="https://placehold.co/1000x500/0A2463/FFF8DC?text=State-of-the-Art+Library" alt="School Library">
+                            <div class="slide-caption">Our Expansive Library Collection</div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://placehold.co/1000x500/4A0D67/FFF8DC?text=Modern+Science+Labs" alt="Science Lab">
+                            <div class="slide-caption">Advanced Science Laboratories</div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://placehold.co/1000x500/D4AF37/0A2463?text=Sprawling+Sports+Grounds" alt="Sports Ground">
+                            <div class="slide-caption">World-Class Sports Facilities</div>
+                        </div>
+                         <div class="slide">
+                            <img src="https://placehold.co/1000x500/0A2463/FFF8DC?text=Creative+Arts+Center" alt="Arts Center">
+                            <div class="slide-caption">Inspiring Arts &amp; Culture Center</div>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button class="prev-slide" aria-label="Previous slide">&#10094;</button>
+                        <button class="next-slide" aria-label="Next slide">&#10095;</button>
+                    </div>
+                    <div class="slider-dots"></div>
+                </div>
+
+                <div style="text-align:center; margin-top: 40px;">
+                    <h3>Quick Links</h3>
+                    <p>Explore key areas of our esteemed institution.</p>
+                    <a href="#academics" class="cta-button nav-link" style="margin: 5px;">Our Programs</a>
+                    <a href="#admissions" class="cta-button nav-link" style="margin: 5px;">Join Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2 class="section-title">About Little Flower High School</h2>
+                <div class="about-grid">
+                    <div>
+                        <img src="https://placehold.co/600x400/0A2463/FFF8DC?text=Our+Historic+Main+Building" alt="King's Crest Main Building">
+                    </div>
+                    <div>
+                        <h3>Our Little Flower High School</h3>
+                        <p>Founded in 2000, Little Flower High School Academy has a long and distinguished history of providing exceptional education. We blend time-honored traditions with innovative teaching methodologies to foster intellectual curiosity, critical thinking, and a lifelong love of learning.</p>
+                        <h3>Mission & Vision</h3>
+                        <p>Our mission is to empower students to achieve their full potential and become compassionate, responsible global citizens. We envision a community where every student is inspired to lead, innovate, and contribute meaningfully to society.</p>
+                    </div>
+                </div>
+
+                <div class="counters" id="counters">
+                    <div class="counter-item">
+                        <h3 data-target="135">0</h3>
+                        <p>Years of Excellence</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3 data-target="5000">0</h3>
+                        <p>Graduates Worldwide</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3 data-target="150">0</h3>
+                        <p>Dedicated Faculty</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="academics" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Academic Programs</h2>
+                <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">At LFS, we offer a comprehensive and rigorous academic curriculum designed to challenge and inspire students at every level. Our programs emphasize critical thinking, creativity, and collaboration.</p>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <h3>Primary School (Ages 5-10)</h3>
+                        <p>A nurturing environment fostering foundational skills in literacy, numeracy, and inquiry-based learning. Emphasis on holistic development through arts, music, and physical education.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Middle School (Ages 11-14)</h3>
+                        <p>A dynamic curriculum that encourages exploration and critical thinking. Students engage in advanced subjects, collaborative projects, and develop leadership skills.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Senior School (Ages 15-18)</h3>
+                        <p>Rigorous academic pathways including national and international baccalaureate programs. Focus on university preparation, specialized studies, and independent research.</p>
+                    </div>
+                    <div class="program-card">
+                        <h3>Royal Arts & Sciences</h3>
+                        <p>Specialized programs in visual arts, performing arts, advanced sciences, and humanities, allowing students to pursue their passions with expert guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="admissions" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Admissions</h2>
+                <div class="admissions-info">
+                    <h3>Joining the LFS Family</h3>
+                    <p>We welcome applications from students who are eager to learn, contribute to our vibrant community, and uphold our values of excellence and integrity. Our admissions process is designed to identify students who will thrive in our challenging and supportive environment.</p>
+                    
+                    <h4>Key Dates & Deadlines:</h4>
+                    <ul>
+                        <li>Application Opens: September 1st</li>
+                        <li>Application Deadline: January 15th</li>
+                        <li>Entrance Examinations: February (various dates)</li>
+                        <li>Interviews: March</li>
+                        <li>Decision Notification: April 1st</li>
+                    </ul>
+                    <p style="margin-top:20px;">For detailed information on the application process, required documents, and scholarship opportunities, please download our admissions brochure or contact the admissions office.</p>
+                    <button class="cta-button" id="openInquiryModal" style="margin-top:20px;">Request Information</button>
+                    <a href="#" class="cta-button" style="margin-top:20px; margin-left: 10px; background-color: var(--royal-blue); color: var(--majestic-gold);">Download Brochure (PDF)</a>
+
+                    <h3 style="margin-top:40px;">Frequently Asked Questions</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h4>What are the age requirements for entry?</h4>
+                            <div class="faq-answer">
+                                <p>For our Primary School, children should be 5 years old by September 1st of the entry year. Specific age requirements for other levels are detailed in our admissions guide.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Are scholarships available?</h4>
+                            <div class="faq-answer">
+                                <p>Yes, LFS offers a range of academic, arts, and sports scholarships based on merit and, in some cases, financial need. Please refer to the scholarships section of our website or brochure.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <h4>What is the student-teacher ratio?</h4>
+                            <div class="faq-answer">
+                                <p>We pride ourselves on maintaining small class sizes to ensure personalized attention. The average student-teacher ratio is 12:1 across the academy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faculty" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Our Esteemed Faculty</h2>
+                <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">Our faculty members are the heart of LFS. They are passionate educators, mentors, and experts in their fields, dedicated to inspiring and guiding our students.</p>
+                <div class="faculty-grid">
+                    <div class="faculty-card">
+                        <img src="https://placehold.co/120x120/0A2463/FFF8DC?text=Sri.+T.+Sathyanarayana" alt="Sri T. Sathyanarayana">
+                        <h4>Sri T.Sathyanarayana</h4>
+                        <p class="designation">Fouder of LFS</p>
+                        <p>here the text about our founder</p>
+                    </div>
+                    <div class="faculty-card">
+                        <img src="https://placehold.co/120x120/4A0D67/FFF8DC?text=Sri.+T.Manoj" alt="Sri T. Manoj">
+                        <h4>Sri T.Manoj</h4>
+                        <p class="designation">Vice Head Master </p>
+                        <p>here the text about our vice head master</p>
+                    </div>
+                    <div class="faculty-card">
+                        <img src="GANGADHAR.jpg" alt="Sri Gangadhar">
+                        <h4>Gangadhar </h4>
+                        <p class="designation">Principle</p>
+                        <p>here the text about our principle</p>
+                    </div>
+                     <div class="faculty-card">
+                        <img src="https://placehold.co/120x120/0A2463/FFF8DC?text=Sri.+T.+Mounika" alt="Sri T. Mounika">
+                        <h4>T.Mounika</h4>
+                        <p class="designation">Incharge of LFS</p>
+                        <p>here text about our vice incharge <p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Gallery: Moments at Little FLower High School</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/0A2463/FFF8DC?text=Graduation+Ceremony" alt="Graduation Ceremony"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/4A0D67/FFF8DC?text=Science+Fair" alt="Science Fair"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/D4AF37/0A2463?text=Sports+Day" alt="Sports Day"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/0A2463/FFF8DC?text=Art+Exhibition" alt="Art Exhibition"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/4A0D67/FFF8DC?text=Music+Concert" alt="Music Concert"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/D4AF37/0A2463?text=Debate+Competition" alt="Debate Competition"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/0A2463/FFF8DC?text=Community+Service" alt="Community Service"></div>
+                    <div class="gallery-item"><img src="https://placehold.co/300x200/4A0D67/FFF8DC?text=Campus+View" alt="Campus View"></div>
+                </div>
+            </div>
+         
+        </section>
+
+
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div>
+                                <label for="name">Full Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="email">Email Address:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div>
+                                <label for="subject">Subject:</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div>
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Send Message</button>
+                        </form>
+                        <div id="form-message" style="margin-top:15px;"></div>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Railway station near,chiluka wada, Korutla, 505326</p>
+                        <p><i class="fas fa-phone"></i> +44 1234 567890</p>
+                        <p><i class="fas fa-envelope"></i> tmk0072@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Office Hours: Mon - Fri, 9:00 AM - 5:00 PM</p>
+                        
+                        <h3 style="margin-top:30px;">Our Location</h3>
+                        <div class="map-placeholder">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.247199891475!2d78.71303767484044!3d18.831673282323234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcd0bf3342463e1%3A0xc086ee1a6cd26426!2sLittle%20Flower%20High%20School!5e0!3m2!1sen!2sin!4v1748074689600!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Little Flower High School. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: var(--majestic-gold);"></i> by Rakshith Pippari  & kundhan Akkenapelly</p>
+        </div>
+    </footer>
+
+    <div id="inquiryModal" class="modal" role="dialog" aria-labelledby="inquiryModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close modal">&times;</span>
+            <h2 id="inquiryModalTitle">Request Information</h2>
+            <form id="inquiryForm">
+                <div>
+                    <label for="modalName">Full Name:</label>
+                    <input type="text" id="modalName" name="modalName" required>
+                </div>
+                <div>
+                    <label for="modalEmail">Email Address:</label>
+                    <input type="email" id="modalEmail" name="modalEmail" required>
+                </div>
+                <div>
+                    <label for="modalQuery">Your Question/Interest:</label>
+                    <textarea id="modalQuery" name="modalQuery" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Submit Inquiry</button>
+            </form>
+             <div id="modal-form-message" style="margin-top:15px;"></div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Navigation ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageSections = document.querySelectorAll('.page-section');
+        const mainNav = document.getElementById('mainNav');
+        const menuToggle = document.querySelector('.menu-toggle');
+
+        function setActivePage(targetId) {
+            // Hide all sections
+            pageSections.forEach(section => section.classList.remove('active'));
+            // Show target section
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update active link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${targetId}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close mobile menu if open
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = '&#9776;'; // Hamburger
+            }
+            
+            // Scroll to top of page
+            window.scrollTo(0, 0);
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                setActivePage(targetId);
+                // Update URL hash for history and direct linking (optional)
+                // window.location.hash = targetId;
+            });
+        });
+
+        // Initial page load - check hash or default to home
+        // const currentHash = window.location.hash.substring(1);
+        // if (currentHash && document.getElementById(currentHash)) {
+        //     setActivePage(currentHash);
+        // } else {
+        //     setActivePage('home');
+        // }
+        // For simplicity in this single file, always start at home.
+         setActivePage('home');
+
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const isExpanded = mainNav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.innerHTML = isExpanded ? '&times;' : '&#9776;'; // Close icon or Hamburger
+        });
+
+        // --- Slider ---
+        const slider = document.querySelector('.slider');
+        if (slider) {
+            const slides = Array.from(slider.children);
+            const nextButton = document.querySelector('.next-slide');
+            const prevButton = document.querySelector('.prev-slide');
+            const dotsContainer = document.querySelector('.slider-dots');
+            let currentIndex = 0;
+            let slideInterval;
+
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('dot');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetInterval();
+                });
+                dotsContainer.appendChild(dot);
+            });
+            const dots = Array.from(dotsContainer.children);
+
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentIndex].classList.add('active');
+            }
+
+            function goToSlide(index) {
+                currentIndex = (index + slides.length) % slides.length; // Loop
+                updateSlider();
+            }
+
+            nextButton.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
+                resetInterval();
+            });
+            prevButton.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
+                resetInterval();
+            });
+
+            function autoSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function startInterval() {
+                slideInterval = setInterval(autoSlide, 5000); // Change slide every 5 seconds
+            }
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+            
+            startInterval();
+            updateSlider(); // Initial position
+        }
+
+
+        // --- Animated Counters ---
+        const countersSection = document.getElementById('counters');
+        if (countersSection) {
+            const counters = document.querySelectorAll('.counters h3[data-target]');
+            const speed = 200; // Lower is faster
+
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target; // Ensure it ends on target
+                    }
+                };
+                updateCount();
+                counter.dataset.animated = 'true'; // Mark as animated
+            };
+
+            const observerOptions = {
+                root: null, // viewport
+                threshold: 0.5 // 50% visible
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(counter => {
+                            if (!counter.dataset.animated) { // Animate only if not already animated
+                                animateCounter(counter);
+                            }
+                        });
+                        // Optionally, unobserve after animating if you only want it once
+                        // observer.unobserve(countersSection); 
+                    }
+                });
+            }, observerOptions);
+
+            counterObserver.observe(countersSection);
+        }
+
+        // --- FAQ Accordion ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('h4');
+            const answer = item.querySelector('.faq-answer');
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.toggle('open');
+                answer.style.maxHeight = isOpen ? answer.scrollHeight + "px" : null;
+                question.setAttribute('aria-expanded', isOpen);
+            });
+            // Initialize ARIA attribute
+            question.setAttribute('aria-expanded', 'false');
+        });
+
+        // --- Modal Logic ---
+        const inquiryModal = document.getElementById('inquiryModal');
+        const openModalButton = document.getElementById('openInquiryModal');
+        const closeModalButton = inquiryModal.querySelector('.close-button');
+        const inquiryForm = document.getElementById('inquiryForm');
+        const modalFormMessage = document.getElementById('modal-form-message');
+
+
+        if (openModalButton) {
+            openModalButton.addEventListener('click', () => {
+                inquiryModal.style.display = 'block';
+                inquiryModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+                inquiryModal.querySelector('input, textarea, button').focus(); // Focus first element
+            });
+        }
+
+        closeModalButton.addEventListener('click', closeModal);
+        
+        window.addEventListener('click', (event) => {
+            if (event.target === inquiryModal) {
+                closeModal();
+            }
+        });
+        
+        function closeModal() {
+            inquiryModal.style.display = 'none';
+            inquiryModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+            modalFormMessage.textContent = ''; // Clear message on close
+            inquiryForm.reset(); // Reset form
+        }
+        
+        // Handle Escape key to close modal
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && inquiryModal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        inquiryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Basic form processing simulation
+            modalFormMessage.textContent = 'Thank you for your inquiry! We will get back to you soon.';
+            modalFormMessage.style.color = 'var(--royal-blue)';
+            // inquiryForm.reset(); // Optionally reset after few seconds or keep data
+            setTimeout(closeModal, 3000); // Close modal after 3 seconds
+        });
+        
+        // --- Contact Form ---
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Basic form processing simulation
+                formMessage.textContent = 'Message sent successfully! We appreciate you reaching out.';
+                formMessage.style.color = 'var(--royal-blue)';
+                contactForm.reset();
+                setTimeout(() => { formMessage.textContent = ''; }, 5000);
+            });
+        }
+
+        // --- Footer Current Year ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    });
+    </script>
+</body>
+</html>
